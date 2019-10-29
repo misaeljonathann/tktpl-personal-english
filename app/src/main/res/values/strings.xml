@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">PersonalEnglish</string>
+    <string name="nav_home">Home</string>
+    <string name="nav_challenge">Challenge</string>
+    <string name="nav_profile">Profile</string>
+    <string name="learned_words">Learned Words:</string>
+</resources>
