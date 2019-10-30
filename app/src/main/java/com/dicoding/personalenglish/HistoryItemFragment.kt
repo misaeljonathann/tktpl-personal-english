@@ -12,12 +12,18 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.dicoding.personalenglish.data.HistoryDate
+import com.dicoding.personalenglish.data.HistoryItem
+import com.dicoding.personalenglish.data.HistoryWord
 import com.dicoding.personalenglish.data.Word
 import com.dicoding.personalenglish.databinding.FragmentHistoryItemBinding
 import com.dicoding.personalenglish.ui.WordViewModel
 import com.dicoding.personalenglish.util.InjectorUtils
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import java.sql.Date
+import java.time.LocalDateTime
+import java.time.format.DateTimeFormatter
+import java.util.*
 
 class HistoryItemFragment: Fragment() {
     private lateinit var recyclerView: RecyclerView
@@ -57,8 +63,26 @@ class HistoryItemFragment: Fragment() {
         wordViewModel = ViewModelProviders.of(this, factory)
             .get(WordViewModel::class.java)
         wordViewModel.getAllWords().observe(this, Observer { words ->
-            adapter.setWords(words)
+            var historyItem = groupDataIntoHashMap(words)
+            adapter.setWords(historyItem)
         })
+    }
+
+    fun groupDataIntoHashMap(words: List<Word>): MutableList<HistoryItem> {
+
+        var musedList = mutableListOf<HistoryItem>()
+        var currentDate: String? = null
+
+        for (word in words.reversed()) {
+            if (currentDate != word.time.toString()) {
+                currentDate = word.time.toString()
+                var historyDate = HistoryDate(currentDate)
+                musedList.add(historyDate)
+            }
+            var historyWord = HistoryWord(word.word)
+            musedList.add(historyWord)
+        }
+        return musedList
     }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
@@ -67,8 +91,8 @@ class HistoryItemFragment: Fragment() {
         if (requestCode == ADD_WORD_REQUEST && resultCode == RESULT_OK) {
             if (data != null) {
                 val word: String = data.getStringExtra(AddWordActivity.EXTRA_WORD)?: ""
-
-                val toInsertWord = Word( word, Date(10,10,10))
+                val currentTime = Date(Calendar.getInstance().time.time)
+                val toInsertWord = Word( word, currentTime)
                 wordViewModel.insert(toInsertWord)
 
                 Toast.makeText(mView.context, "${wordViewModel.getAllWords()}", Toast.LENGTH_SHORT).show()

@@ -20,3 +20,4 @@ data class Word (
         return Common.VIEWTYPE_WORD.code
     }
 }
+
