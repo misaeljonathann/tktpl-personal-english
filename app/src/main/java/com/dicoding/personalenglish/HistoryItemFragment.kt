@@ -27,7 +27,6 @@ import java.util.*
 
 class HistoryItemFragment: Fragment() {
     private lateinit var recyclerView: RecyclerView
-    val ADD_WORD_REQUEST = 1
     private lateinit var mView: View
     private lateinit var wordViewModel: WordViewModel
 
@@ -40,11 +39,6 @@ class HistoryItemFragment: Fragment() {
         this.mView = binding.root
         this.recyclerView = mView.findViewById(R.id.rv_history)
 
-        val buttonAddWord: FloatingActionButton = mView.findViewById(R.id.button_add_note)
-        buttonAddWord.setOnClickListener {
-            val intent: Intent = Intent(mView.context, AddWordActivity::class.java)
-            startActivityForResult(intent, ADD_WORD_REQUEST)
-        }
 
         showRecyclerList()
         return mView
@@ -83,21 +77,5 @@ class HistoryItemFragment: Fragment() {
             musedList.add(historyWord)
         }
         return musedList
-    }
-
-    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
-        super.onActivityResult(requestCode, resultCode, data)
-
-        if (requestCode == ADD_WORD_REQUEST && resultCode == RESULT_OK) {
-            if (data != null) {
-                val word: String = data.getStringExtra(AddWordActivity.EXTRA_WORD)?: ""
-                val currentTime = Date(Calendar.getInstance().time.time)
-                val toInsertWord = Word( word, currentTime)
-                wordViewModel.insert(toInsertWord)
-
-                Toast.makeText(mView.context, "${wordViewModel.getAllWords()}", Toast.LENGTH_SHORT).show()
-
-            }
-        }
     }
 }
