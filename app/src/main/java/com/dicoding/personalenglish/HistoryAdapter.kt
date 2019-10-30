@@ -6,12 +6,15 @@ import android.view.ViewGroup
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.dicoding.personalenglish.Common.Common
+import com.dicoding.personalenglish.data.HistoryDate
+import com.dicoding.personalenglish.data.HistoryItem
+import com.dicoding.personalenglish.data.HistoryWord
 import com.dicoding.personalenglish.data.Word
 import java.lang.IllegalArgumentException
 
 class HistoryAdapter: RecyclerView.Adapter<HistoryAdapter.ViewHolder>() {
 
-    private var listWords: List<Word> = listOf()
+    private var historyItems: List<HistoryItem> = listOf()
 
     open inner class ViewHolder(itemView: View): RecyclerView.ViewHolder(itemView)
 
@@ -26,11 +29,11 @@ class HistoryAdapter: RecyclerView.Adapter<HistoryAdapter.ViewHolder>() {
 
     override fun onCreateViewHolder(view: ViewGroup, viewType: Int): ViewHolder {
         when (viewType) {
-            Common.VIEWTYPE_GROUP.code -> {
+            HistoryItem.VIEWTYPE_DATE -> {
                 val itemView: View = LayoutInflater.from(view.context).inflate(R.layout.history_group_header, view, false)
                 return HeaderViewHolder(itemView)
             }
-            Common.VIEWTYPE_WORD.code -> {
+            HistoryItem.VIEWTYPE_WORD -> {
                 val itemView: View = LayoutInflater.from(view.context).inflate(R.layout.history_item, view, false)
                 return ListViewHolder(itemView)
             }
@@ -39,27 +42,31 @@ class HistoryAdapter: RecyclerView.Adapter<HistoryAdapter.ViewHolder>() {
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        var currentWords = listWords.get(position)
-        var itemHolder: ListViewHolder = holder as ListViewHolder
+        when (holder.getItemViewType()) {
+            HistoryItem.VIEWTYPE_WORD -> {
+                var currentItem = historyItems.get(position) as HistoryWord
+                var itemHolder: ListViewHolder = holder as ListViewHolder
+                itemHolder.word.setText(currentItem.word)
+            }
 
-        itemHolder.word.setText(currentWords.word)
-//        holder.time.setText(currentWords.time.toString())
-
-//        holder.itemView.setOnClickListener {
-//            onItemClickCallback.onItemClicked(listWords[holder.adapterPosition], position)
-//        }
+            HistoryItem.VIEWTYPE_DATE -> {
+                var currentItem = historyItems.get(position) as HistoryDate
+                var itemHolder: HeaderViewHolder = holder as HeaderViewHolder
+                itemHolder.time.setText(currentItem.date)
+            }
+        }
     }
 
-    fun setWords(reminders: List<Word>) {
-        listWords = reminders
+    fun setWords(items: List<HistoryItem>) {
+        historyItems = items
         notifyDataSetChanged()
     }
 
     override fun getItemViewType(position: Int): Int {
-        return listWords.get(position).getType()
+        return historyItems.get(position).getType()
     }
 
     override fun getItemCount(): Int {
-        return listWords.size
+        return historyItems.size
     }
 }
