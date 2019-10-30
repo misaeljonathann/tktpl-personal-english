@@ -28,8 +28,6 @@ abstract class WordDatabase: RoomDatabase() {
                     override fun onCreate(db: SupportSQLiteDatabase) {
                         super.onCreate(db)
                     }
-
-
                 })
                 .build()
             }

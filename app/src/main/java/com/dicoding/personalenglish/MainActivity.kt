@@ -18,5 +18,7 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
+        var actionBar = getSupportActionBar()
+        actionBar?.setCustomView(R.layout.actionbar_layout)
     }
 }
