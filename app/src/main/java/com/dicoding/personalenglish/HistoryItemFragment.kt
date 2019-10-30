@@ -73,7 +73,7 @@ class HistoryItemFragment: Fragment() {
         var musedList = mutableListOf<HistoryItem>()
         var currentDate: String? = null
 
-        for (word in words) {
+        for (word in words.reversed()) {
             if (currentDate != word.time.toString()) {
                 currentDate = word.time.toString()
                 var historyDate = HistoryDate(currentDate)
