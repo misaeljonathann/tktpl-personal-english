@@ -3,7 +3,6 @@ package com.dicoding.personalenglish
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.widget.Toast
 import androidx.fragment.app.FragmentTransaction
 import com.google.android.material.bottomnavigation.BottomNavigationView
 
@@ -33,10 +32,6 @@ class MainActivity : AppCompatActivity() {
                     true
                 }
             }
-        }
-
-        fm.addOnBackStackChangedListener {
-
         }
     }
 
