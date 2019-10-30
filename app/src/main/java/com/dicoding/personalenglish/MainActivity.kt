@@ -44,6 +44,10 @@ class MainActivity : AppCompatActivity() {
     }
 
     fun goToChallengesPage(): Boolean {
+        val fragment = HistoryItemFragment()
+        val fragmentTransaction: FragmentTransaction = this.supportFragmentManager.beginTransaction()
+        fragmentTransaction.replace(R.id.fragment_home, fragment, fragment.toString())
+        fragmentTransaction.commit()
         return true
     }
 }

@@ -48,6 +48,7 @@
                             android:layout_weight="1"/>
 
                         <EditText
+                            android:id="@+id/edit_text_word"
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
                             android:layout_weight="14"
@@ -56,6 +57,7 @@
                     </LinearLayout>
 
                     <Button
+                        android:id="@+id/add_button"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
