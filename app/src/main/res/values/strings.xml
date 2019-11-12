@@ -1,7 +1,21 @@
 <resources>
     <string name="app_name">PersonalEnglish</string>
     <string name="nav_home">Home</string>
-    <string name="nav_challenge">Challenge</string>
+    <string name="nav_history">History</string>
     <string name="nav_profile">Profile</string>
     <string name="learned_words">Learned Words:</string>
+    <string name="activity_add_word_title">Title</string>
+    <string name="fragment_add_challenge_title">Title</string>
+    <string name="fragment_add_challenge_duedate">DueDate (DD/MM/YYYY, ex: 19/10/2019)</string>
+    <string name="fragment_add_challenge_target">Target (ex: 10, 20, 150) words</string>
+    <string name="fragment_add_challenge_add">Add</string>
+    <string name="fragment_homepage_search_box_title">Today\'s Word?</string>
+    <string name="fragment_homepage_search_button">Go!</string>
+    <string name="fragment_homepage_header_greeting">Hi Learner!</string>
+    <string name="fragment_homepage_dashboard_analytics">Dashboard Analytics</string>
+    <string name="fragment_homepage_header_ongoing_challenge">Ongoing Challenges</string>
+    <string name="fragment_profilepage_change_pp">Change Picture</string>
+    <string name="fragment_profilepage_pp_title_1">Motivate Yourself!</string>
+    <string name="fragment_profilepage_pp_title_2">Add picture that make you excited!</string>
+    <string name="fragment_word_definition_placeholder">Placeholder</string>
 </resources>

@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">PersonalEnglish</string>
+    <string name="nav_home">Beranda</string>
+    <string name="nav_history">Tantangan</string>
+    <string name="nav_profile">Profil</string>
+    <string name="learned_words">Kata yang Dipelajari:</string>
+    <string name="activity_add_word_title">Judul</string>
+    <string name="fragment_add_challenge_title">Judul</string>
+    <string name="fragment_add_challenge_duedate">Tanggal Tenggat (DD/MM/YYYY, ex: 19/10/2019)</string>
+    <string name="fragment_add_challenge_target">Target (ex: 10, 20, 150) Kata</string>
+    <string name="fragment_add_challenge_add">Tambah</string>
+    <string name="fragment_homepage_search_box_title">Kata hari ini?</string>
+    <string name="fragment_homepage_search_button">Go!</string>
+    <string name="fragment_homepage_header_greeting">Hi Pelajar!</string>
+    <string name="fragment_homepage_dashboard_analytics">Dashboard Analytics</string>
+    <string name="fragment_homepage_header_ongoing_challenge">Tantangan Berlangsung</string>
+    <string name="fragment_profilepage_change_pp">Ganti Foto Profil</string>
+    <string name="fragment_profilepage_pp_title_1">Ayo Semangat!</string>
+    <string name="fragment_profilepage_pp_title_2">Ganti foto diatas dengan foto yang membuat kamu semangat</string>
+    <string name="fragment_word_definition_placeholder">Placeholder</string>
+</resources>
