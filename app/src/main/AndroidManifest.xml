@@ -1,16 +1,20 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.dicoding.personalenglish">
-    <uses-permission android:name="android.permission.INTERNET"></uses-permission>
+    package="id.ac.ui.cs.mobileprogramming.misaeljonathan.personalenglish">
+    <uses-permission android:name="android.permission.INTERNET"/>
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
+    <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED"/>
 
     <application
+        android:name="id.ac.ui.cs.mobileprogramming.misaeljonathan.personalenglish.httpclient.HttpProvider"
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".MainActivity">
+        <activity android:name=".MainActivity"
+            android:configChanges="keyboardHidden|orientation|screenSize">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -18,7 +22,13 @@
             </intent-filter>
         </activity>
         <activity android:name=".AddWordActivity"></activity>
-        <activity android:name=".HistoryViewActivity"></activity>
+        <activity android:name=".MainActivityLandscape"
+            android:configChanges="keyboardHidden|orientation|screenSize"></activity>
+        <receiver android:name=".broadcastreceiver.NotificationReceiver">
+            <intent-filter>
+                <action android:name="android.intent.action.BOOT_COMPLETED"/>
+            </intent-filter>
+        </receiver>
     </application>
 
 </manifest>

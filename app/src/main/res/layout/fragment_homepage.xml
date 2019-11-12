@@ -5,12 +5,13 @@
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
 
-        <ScrollView
-            android:id="@+id/scroll_view_main"
+        <androidx.core.widget.NestedScrollView
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintLeft_toLeftOf="parent"
+            android:id="@+id/scroll_view_main"
             android:background="#FFFFFF"
             android:orientation="vertical"
             android:layout_width="match_parent"
@@ -20,7 +21,6 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="vertical">
-
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -32,7 +32,7 @@
                     <TextView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="Today's Word?"
+                        android:text="@string/fragment_homepage_search_box_title"
                         android:textSize="24sp"
                         android:gravity="center"
                         android:layout_marginTop="8dp"/>
@@ -53,6 +53,7 @@
                             android:layout_height="wrap_content"
                             android:layout_weight="14"
                             android:background="#FFFFFF"
+                            android:imeOptions="actionDone"
                             android:layout_gravity="center"/>
                     </LinearLayout>
 
@@ -61,7 +62,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
-                        android:text="Go!"
+                        android:text="@string/fragment_homepage_search_button"
                         android:textSize="12sp"/>
                 </LinearLayout>
 
@@ -70,29 +71,69 @@
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="8dp"
                     android:layout_marginTop="8dp"
-                    android:text="Hi Misael!"
+                    android:text="@string/fragment_homepage_header_greeting"
                     android:textSize="24sp" />
 
                 <LinearLayout
                     android:layout_width="match_parent"
-                    android:layout_height="200dp"
+                    android:layout_height="wrap_content"
                     android:layout_margin="8dp"
-                    android:background="#C4C4C4">
+                    android:orientation="vertical"
+                    android:gravity="center"
+                    android:background="@color/palette1creme">
 
                     <TextView
-                        android:layout_width="wrap_content"
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="Dashboard Analytics"
+                        android:text="You've learned"
+                        android:fontFamily="@font/roboto_thin"
+                        android:textSize="20sp"
+                        android:gravity="center"/>
+
+                    <TextView
+                        android:id="@+id/text_view_dashboard_target"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:textSize="24sp"
+                        android:fontFamily="@font/roboto_bold"
+                        android:text="100 unique words"
+                        android:gravity="center"/>
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:textSize="20sp"
+                        android:fontFamily="@font/roboto_thin"
+                        android:text="so far"
                         android:gravity="center"/>
                 </LinearLayout>
 
-                <TextView
+                <androidx.constraintlayout.widget.ConstraintLayout
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="8dp"
-                    android:layout_marginTop="8dp"
-                    android:text="Ongoing Challenges"
-                    android:textSize="24sp"/>
+                    android:layout_height="wrap_content">
+
+                    <TextView
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:layout_constraintLeft_toLeftOf="parent"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="8dp"
+                        android:layout_marginTop="8dp"
+                        android:text="@string/fragment_homepage_header_ongoing_challenge"
+                        android:textSize="24sp"/>
+
+                    <ImageView
+                        android:id="@+id/image_view_add_challenge"
+                        app:layout_constraintRight_toRightOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        android:layout_marginRight="8dp"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:src="@drawable/ic_add_circle_black_24dp"/>
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -100,28 +141,14 @@
                     android:orientation="vertical"
                     android:layout_margin="8dp">
 
-                    <LinearLayout
+                    <androidx.recyclerview.widget.RecyclerView
+                        android:id="@+id/rv_challenge"
                         android:layout_width="match_parent"
-                        android:layout_height="80dp"
-                        android:layout_marginTop="4dp"
-                        android:background="#C4C4C4"/>
-
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="80dp"
-                        android:layout_marginTop="4dp"
-                        android:background="#C4C4C4"/>
-
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="80dp"
-                        android:layout_marginTop="4dp"
-                        android:background="#C4C4C4"/>
+                        android:layout_height="wrap_content"
+                        tools:listitem="@layout/challenge_item"/>
 
                 </LinearLayout>
-
             </LinearLayout>
-        </ScrollView>
-
+        </androidx.core.widget.NestedScrollView>
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

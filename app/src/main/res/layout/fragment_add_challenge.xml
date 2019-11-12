@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:app="http://schemas.android.com/apk/res-auto">
+    <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:background="@color/colorBackgroundWhite"
+        android:padding="16dp">
+
+        <EditText
+            android:id="@+id/edit_text_challenge_title"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintLeft_toLeftOf="parent"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/fragment_add_challenge_title"
+            android:inputType="text" />
+
+        <EditText
+            app:layout_constraintTop_toBottomOf="@id/edit_text_challenge_title"
+            app:layout_constraintLeft_toLeftOf="parent"
+            android:id="@+id/edit_text_challenge_duedate"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/fragment_add_challenge_duedate"
+            android:inputType="textMultiLine" />
+
+        <EditText
+            app:layout_constraintTop_toBottomOf="@id/edit_text_challenge_duedate"
+            app:layout_constraintLeft_toLeftOf="parent"
+            android:id="@+id/edit_text_challenge_target"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/fragment_add_challenge_target"
+            android:inputType="number" />
+
+        <Button
+            android:id="@+id/button_add_challenge_form"
+            app:layout_constraintTop_toBottomOf="@id/edit_text_challenge_target"
+            app:layout_constraintRight_toRightOf="parent"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:text="@string/fragment_add_challenge_add" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</layout>
