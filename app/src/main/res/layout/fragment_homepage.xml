@@ -74,39 +74,49 @@
                     android:text="@string/fragment_homepage_header_greeting"
                     android:textSize="24sp" />
 
-                <LinearLayout
+                <FrameLayout
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_margin="8dp"
-                    android:orientation="vertical"
-                    android:gravity="center"
-                    android:background="@color/palette1creme">
+                    android:layout_height="wrap_content">
 
-                    <TextView
+                    <android.opengl.GLSurfaceView
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+
+                        android:id="@+id/glSurface"/>
+
+                    <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="You've learned"
-                        android:fontFamily="@font/roboto_thin"
-                        android:textSize="20sp"
-                        android:gravity="center"/>
+                        android:layout_margin="8dp"
+                        android:orientation="vertical"
+                        android:gravity="center">
 
-                    <TextView
-                        android:id="@+id/text_view_dashboard_target"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:textSize="24sp"
-                        android:fontFamily="@font/roboto_bold"
-                        android:text="100 unique words"
-                        android:gravity="center"/>
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="You've learned"
+                            android:fontFamily="@font/roboto_thin"
+                            android:textSize="20sp"
+                            android:gravity="center"/>
 
-                    <TextView
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:textSize="20sp"
-                        android:fontFamily="@font/roboto_thin"
-                        android:text="so far"
-                        android:gravity="center"/>
-                </LinearLayout>
+                        <TextView
+                            android:id="@+id/text_view_dashboard_target"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:textSize="24sp"
+                            android:fontFamily="@font/roboto_bold"
+                            android:text="100 unique words"
+                            android:gravity="center"/>
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:textSize="20sp"
+                            android:fontFamily="@font/roboto_thin"
+                            android:text="so far"
+                            android:gravity="center"/>
+                    </LinearLayout>
+                </FrameLayout>
 
                 <androidx.constraintlayout.widget.ConstraintLayout
                     android:layout_width="match_parent"

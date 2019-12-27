@@ -16,8 +16,12 @@ import android.app.Notification
 import android.os.SystemClock
 import android.app.PendingIntent
 import android.content.Context
+import android.util.Log
 import androidx.core.app.TaskStackBuilder
+import id.ac.ui.cs.mobileprogramming.misaeljonathan.personalenglish.broadcastreceiver.NotificationBase
 import id.ac.ui.cs.mobileprogramming.misaeljonathan.personalenglish.broadcastreceiver.NotificationReceiver
+import id.ac.ui.cs.mobileprogramming.misaeljonathan.personalenglish.ui.RecorderView.RecorderFragment
+import id.ac.ui.cs.mobileprogramming.misaeljonathan.personalenglish.ui.RecorderView.RecorderService
 import java.util.*
 
 
@@ -37,25 +41,62 @@ class MainActivity : AppCompatActivity() {
 
         val navbar: BottomNavigationView = findViewById(R.id.navigation)
 
-        scheduleNotification(getNotification("Don't forget to learn new Words!"))
-        navbar.setOnNavigationItemSelectedListener { menuItem ->
-            when (menuItem.itemId) {
-                R.id.navigation_home -> {
-                    navigateToOtherMenu(HomepageFragment())
-                }
+        Log.d("GAWAT", "1")
+        if (savedInstanceState == null) {
+            val extras = intent?.extras;
+            Log.d("GAWAT", "2")
+            if (extras == null) {
+                //Cry about not being clicked on
+            } else if (extras.getString("action") == NotificationBase.ACTION_STOP_RECORDER) {
+                Log.d("GAWAT", "ANJER BISA TAPI KNP COK")
+            }
+        }
 
-                R.id.navigation_challenge -> {
-                    navigateToOtherMenu(HistoryItemFragment())
-                }
+        navigationToggle(true)
+    }
 
-                R.id.navigation_profile -> {
-                    navigateToOtherMenu(ProfileFragment())
-                }
+    override fun onDestroy() {
+        super.onDestroy()
 
-                else -> {
-                    true
+    }
+
+    fun navigationToggle(isEnabled: Boolean) {
+        val navbar: BottomNavigationView = findViewById(R.id.navigation)
+
+        if (isEnabled == true) {
+            navbar.setEnabled(true);
+            navbar.setFocusable(true);
+            navbar.setFocusableInTouchMode(true);
+            navbar.setClickable(true);
+            navbar.setOnNavigationItemSelectedListener { menuItem ->
+                when (menuItem.itemId) {
+                    R.id.navigation_home -> {
+                        navigateToOtherMenu(HomepageFragment())
+                    }
+
+                    R.id.navigation_challenge -> {
+                        navigateToOtherMenu(HistoryItemFragment())
+                    }
+
+                    R.id.navigation_profile -> {
+                        navigateToOtherMenu(RecorderFragment())
+                    }
+
+                    else -> {
+                        true
+                    }
                 }
             }
+        } else {
+            navbar.setEnabled(false);
+            navbar.setFocusable(false);
+            navbar.setFocusableInTouchMode(false);
+            navbar.setClickable(false);
+            navbar.setOnNavigationItemSelectedListener { menuItem ->
+                Toast.makeText(applicationContext, "Navigation Bar is disabled until Recorder is stopped", Toast.LENGTH_LONG).show()
+                true
+            }
+
         }
     }
 
@@ -68,44 +109,6 @@ class MainActivity : AppCompatActivity() {
             startActivity(intent)
         }
         super.onConfigurationChanged(newConfig)
-    }
-
-    private fun scheduleNotification(notification: Notification) {
-        val notificationIntent = Intent(this, NotificationReceiver::class.java)
-        notificationIntent.putExtra(NotificationReceiver.NOTIFICATION_ID, 1)
-        notificationIntent.putExtra(NotificationReceiver.NOTIFICATION, notification)
-        val pendingIntent = PendingIntent.getBroadcast(
-            this,
-            0,
-            notificationIntent,
-            PendingIntent.FLAG_UPDATE_CURRENT
-        )
-
-        val alarmStartTime = Calendar.getInstance()
-        alarmStartTime.set(Calendar.HOUR_OF_DAY, 8)
-        alarmStartTime.set(Calendar.MINUTE, 0)
-        alarmStartTime.set(Calendar.SECOND, 0)
-
-        val alarmManager = getSystemService(Context.ALARM_SERVICE) as AlarmManager
-        alarmManager.setRepeating(AlarmManager.RTC_WAKEUP,
-            alarmStartTime.getTimeInMillis(), AlarmManager.INTERVAL_DAY, pendingIntent)
-    }
-
-    private fun getNotification(content: String): Notification {
-        val resultIntent = Intent(this, MainActivity::class.java)
-        val resultPendingIntent: PendingIntent? = TaskStackBuilder.create(this).run {
-            addNextIntentWithParentStack(resultIntent)
-            getPendingIntent(0, PendingIntent.FLAG_UPDATE_CURRENT)
-        }
-
-        val builder = NotificationCompat.Builder(this, default_notification_channel_id)
-        builder.setContentTitle("Let's Learn New Vocabulary!")
-        builder.setContentText(content)
-        builder.setContentIntent(resultPendingIntent)
-        builder.setSmallIcon(R.drawable.ic_launcher_foreground)
-        builder.setAutoCancel(true)
-        builder.setChannelId(NOTIFICATION_CHANNEL_ID)
-        return builder.build()
     }
 
     fun navigateToOtherMenu(givenFragment: Fragment): Boolean {

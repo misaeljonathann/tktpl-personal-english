@@ -9,6 +9,11 @@ import android.app.NotificationChannel
 import android.app.NotificationManager
 import androidx.core.content.ContextCompat.getSystemService
 import id.ac.ui.cs.mobileprogramming.misaeljonathan.personalenglish.MainActivity.Companion.NOTIFICATION_CHANNEL_ID
+import android.app.PendingIntent
+import android.media.session.PlaybackState.ACTION_PAUSE
+import android.media.session.PlaybackState.ACTION_PLAY
+
+
 
 
 class NotificationReceiver: BroadcastReceiver() {
@@ -26,17 +31,16 @@ class NotificationReceiver: BroadcastReceiver() {
             )
             notificationManager.createNotificationChannel(notificationChannel)
         }
-        val id = intent?.getIntExtra(NOTIFICATION_ID, 0)
 
-        if (id != null) {
-            notificationManager.notify(id, notification)
-        } else {
-            Toast.makeText(context, "Notification ID Null", Toast.LENGTH_SHORT).show()
-        }
+//        va
+
     }
 
     companion object {
+        // Notification ID
+        var NOTIFICATION_AUDIO_ID = 9001
         var NOTIFICATION_ID = "notification-id"
+
         var NOTIFICATION = "notification"
     }
 }
